@@ -1,0 +1,21 @@
+<!--  product-image、product-name、product-price 并不是 class 的名字。他们实际上就是刚刚我们在 product.js 中定义的 属性 properties: productImage, productName, productPrice
+
+这样的命名改变是因为 .js 文件定义变量的时候要用驼峰定义 camel case，但是在wxml里要转成 dash 规则，这个是框架的设定，记住它就好啦！ -->
+<product product-image="{{product.image}}" product-name="{{product.name}}" product-price="{{product.price}}"></product>
+
+<view class="review-list">
+  <view class="review-title">{{reviewList.length}}reviews</view>
+  <view wx:for="{{reviewList}}" wx:key="id" class="review-card">
+    <image class="review-avatar" src="{{item.avatar}}"></image>
+    <view class="review-cnt">
+      <view class="review-top">
+        <view class="review-username">{{item.username}}</view>
+        <view class="review-time">{{item.createTime}}</view>
+      </view>
+      <view class="review-content">{{item.content}}</view>
+      <view class="preview-list" wx:if="{{item.images.length}}">
+        <image class="preview-item" wx:for="{{item.images}}" wx:for-item="pitem" wx:for-index="pindex" wx:key="*this" src="{{pitem}}" mode="aspectFit"  bindtap="previewImage" data-src="{{pitem}}"></image>
+</view>
+    </view>
+  </view>
+</view>
